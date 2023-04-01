@@ -32,6 +32,8 @@ this Python class.
 
 
 # Source packages.
+from pokemon import Pokemon
+from weapon_type import WeaponType
 
 
 
@@ -68,6 +70,10 @@ class PokemonEarth():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
+    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        if not (11 <= defense_rating <= 20):
+            raise ValueError("Invalid defense rating for Earth Pokemon")
+        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
 
 def main():
