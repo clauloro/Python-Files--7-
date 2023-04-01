@@ -32,7 +32,14 @@ this Python class.
 
 
 # Source packages.
+from enum import Enum
+import random 
 
+class WeaponType(Enum):
+    PUNCH = 1
+    KICK = 2
+    ELBOW = 3
+    HEADBUTT = 4
 
 
 class Pokemon():
@@ -68,8 +75,70 @@ class Pokemon():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
     """
+    _pokemon_ids = set()
 
+    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        if not isinstance(id,int) or id in Pokemon._pokemon_ids:
+            raise ValueError("Invalid ID")
+        if not isinstance(pokemon_name, str):
+            raise ValueError("Invalid Pokemon name") 
+        if not isinstance(weapon_type, WeaponType):
+            raise ValueError("Invalid weapon type")
+        if not (1 <= health_points <= 100):
+            raise ValueError("Invalid health points")
+        if not (1 <= attack_rating <= 10):
+            raise ValueError("Invalid attack rating")
+        if not (1 <= defense_rating <= 10):
+            raise ValueError("Invalid defense rating")
 
+        self._id = id
+        Pokemon._pokemon_ids.add(id)
+        self._pokemon_name = pokemon_name
+        self._weapon_type = weapon_type
+        self._health_points = health_points
+        self._attack_rating = attack_rating
+        self._defense_rating = defense_rating
+
+    def __del__(self):
+        if self._id in Pokemon._pokemon_ids:
+            Pokemon._pokemon_ids.remove(self._id)
+
+    def __str__(self):
+        return f"Pokemon ID {self._id} with name {self._pokemon_name} has as weapon {self._weapon_type.name} and health {self._health_points}"
+
+    def get_pokemon_name(self):
+        return self._pokemon_name
+
+    def get_weapon_type(self):
+        return self._weapon_type
+
+    def get_health_points(self):
+        return self._health_points
+
+    def get_attack_rating(self):
+        return self._attack_rating
+
+    def get_defense_rating(self):
+        return self._defense_rating
+
+    def is_alive(self):
+        return self._health_points > 0
+
+    def fight_attack(self, pokemon_to_attack):
+        if not isinstance(pokemon_to_attack, Pokemon):
+            raise ValueError("Invalid Pokemon to attack")
+        if self.is_alive() and pokemon_to_attack.is_alive():
+            return pokemon_to_attack.fight_defense(self._attack_rating)
+        return False
+
+    def fight_defense(self, points_of_damage):
+        if not isinstance(points_of_damage, int):
+            raise ValueError("Invalid points of damage")
+        if self.is_alive():
+            damage = max(points_of_damage - self._defense_rating, 0)
+            self._health_points -= damage
+            return damage > 0
+        return False
 
 
 
