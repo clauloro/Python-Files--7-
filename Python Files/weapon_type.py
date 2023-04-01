@@ -60,6 +60,18 @@ class WeaponType():
       >>> from weapon_type import WeaponType
       >>> obj_WeaponType = WeaponType.Boxer
     """
+  
+  
+    
+    class _WeaponTypeValue:
+        def __init__(self, value):
+            self.value = value
+
+    PUNCH = _WeaponTypeValue(2)
+    KICK = _WeaponTypeValue(4)
+    ELBOW = _WeaponTypeValue(6)
+    HEADBUTT = _WeaponTypeValue(10)
+
 
 
 
