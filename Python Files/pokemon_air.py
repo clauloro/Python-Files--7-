@@ -32,10 +32,14 @@ this Python class.
 
 
 # Source packages.
+import random
+from pokemon import Pokemon
+from weapon_type import WeaponType
+#NO FUNCIONA MODIFICAR WEAPON TYPE PARA EL HEADPUTT
 
 
 
-class PokemonAir():
+class PokemonAir(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +72,16 @@ class PokemonAir():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
+    def fight_defense(self, attack_points):
+        if random.random() < 0.5:
+            return False
+        else:
+            damage = attack_points - self.get_defense_rating()
+            if damage > 0:
+                self.set_health_points(self.get_health_points() - damage)
+                return True
+            return False
+
 
 
 def main():

@@ -34,6 +34,7 @@ this Python class.
 # Source packages.
 from pokemon import Pokemon
 from weapon_type import WeaponType
+#NO FUNCIONA MODIFICAR WEAPON TYPE PARA EL HEADPUTT
 
 
 

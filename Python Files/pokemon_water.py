@@ -32,7 +32,7 @@ this Python class.
 
 
 # Source packages.
-
+from weapon_type import WeaponType
 
 
 class PokemonWater():
