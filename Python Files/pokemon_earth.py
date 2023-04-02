@@ -37,7 +37,7 @@ from weapon_type import WeaponType
 
 
 
-class PokemonEarth():
+class PokemonEarth(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.

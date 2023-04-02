@@ -33,7 +33,9 @@ this Python class.
 
 # Source packages.
 from enum import Enum
-import random 
+import random
+
+
 
 class WeaponType(Enum):
     PUNCH = 1
