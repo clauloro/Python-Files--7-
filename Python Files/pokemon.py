@@ -34,6 +34,7 @@ this Python class.
 # Source packages.
 from enum import Enum
 import random
+from weapon_type import WeaponType
 
 
 
