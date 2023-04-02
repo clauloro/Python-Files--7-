@@ -62,15 +62,24 @@ class WeaponType():
     """
   
   
-    
     class _WeaponTypeValue:
         def __init__(self, value):
             self.value = value
+
+        def __eq__(self, other):
+            return isinstance(other, WeaponType._WeaponTypeValue) and self.value == other.value
+
+        def __getattribute__(self, name):
+            if name == "__class__":
+                return WeaponType
+            return super().__getattribute__(name)
 
     PUNCH = _WeaponTypeValue(2)
     KICK = _WeaponTypeValue(4)
     ELBOW = _WeaponTypeValue(6)
     HEADBUTT = _WeaponTypeValue(10)
+
+
 
 
 
