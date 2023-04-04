@@ -72,9 +72,11 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
+    
     def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
         super().__init__(id, pokemon_name, health_points, attack_rating, defense_rating)
         self._weapon_type = weapon_type
+
     
     def get_weapon_type(self):
         return self._weapon_type
