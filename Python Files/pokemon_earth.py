@@ -32,6 +32,7 @@ this Python class.
 
 
 # Source packages.
+import random
 from pokemon import Pokemon
 from weapon_type import WeaponType
 #NO FUNCIONA MODIFICAR WEAPON TYPE PARA EL HEADPUTT
@@ -72,10 +73,45 @@ class PokemonEarth(Pokemon):
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
     def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
+        self._weapon_type = weapon_type
         if not (11 <= defense_rating <= 20):
             raise ValueError("Invalid defense rating for Earth Pokemon")
-        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
+    def __str__(self):
+        return f"{self.get_name()} (ID: {self.get_id()}, Weapon: {self._weapon_type.name}, HP: {self.get_health()})"
+
+    def get_name(self):
+        return self.get_name()
+
+    def get_weapon_type(self):
+        return self._weapon_type
+
+    def get_health(self):
+        return self.get_health()
+
+    def get_attack(self):
+        return self.get_attack()
+
+    def get_defense(self):
+        return self.get_defense()
+
+    def is_alive(self):
+        return self.get_health() > 0
+
+    def fight_defense(self, attack_rating):
+        if self._weapon_type == WeaponType.HEADBUTT:
+            if random.randint(1, 10) > 7:
+                return False
+        if self.get_defense() >= attack_rating:
+            return False
+        else:
+            damage = attack_rating - self.get_defense()
+            self.set_health(self.get_health() - damage)
+            return True
+
+    def fight_attack(self, pokemon_to_attack):
+        return pokemon_to_attack.fight_defense(self.get_attack())
 
 def main():
     """Function main of the module.
@@ -103,7 +139,7 @@ def main():
     print("=================================================================.")
     print("Test Case 1: Create a Pokemon.")
     print("=================================================================.")
-    pokemon_1 = PokemonEarth(1, "Diglett", WeaponType.HEADBUTT, 100, 8, 15)
+    pokemon_1 = PokemonEarth(1, "Diglett", WeaponType.HEADBUTT, 100, 8, 12)
 
     if pokemon_1.get_pokemon_name() == "Diglett":
         print("Test PASS. The parameter pokemon_name has been correctly set.")
