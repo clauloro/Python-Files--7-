@@ -74,7 +74,7 @@ class PokemonElectricity(Pokemon):
         super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
     def fight_attack(self, other_pokemon):
-        if random.random() <= 0.5:  # Hay un 50% de posibilidad de que el ataque valga el doble
+        if random.random() <= 0.5:  
             damage = self.get_attack_rating() * 2
         else:
             damage = self.get_attack_rating()
