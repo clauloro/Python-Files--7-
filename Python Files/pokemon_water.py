@@ -76,7 +76,7 @@ class PokemonWater(Pokemon):
         super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
     def __str__(self):
-        return f"Pokemon ID {self._id} with name {self._pokemon_name} has {self._weapon_type.name} weapon and {self._health_points} health points"
+        return f"Pokemon ID {self._id} with name {self._pokemon_name} has as weapon {self._weapon_type.name} and health {self._health_points}"
 
     def is_alive(self):
         return self._health_points > 0
