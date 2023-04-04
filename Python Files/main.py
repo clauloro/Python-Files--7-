@@ -31,6 +31,13 @@ This Python method contains the application of the Game.
 
 
 # Source packages.
+import csv
+from pokemon import Pokemon
+from weapon_type import WeaponType
+from pokemon_water import PokemonWater
+from pokemon_electricity import PokemonElectricity
+from pokemon_earth import PokemonEarth
+from pokemon_air import PokemonAir
 
 
 
@@ -56,7 +63,15 @@ def get_data_from_user(name_file):
     -------
       >>> list_pokemons = get_data_from_user("file.csv")
     """
-
+    list_pokemons = []
+    with open(name_file, 'r') as file:
+        reader = csv.reader(file)
+        next(reader)  
+        for row in reader:
+            id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating = row
+            pokemon = PokemonWater(int(id), pokemon_name, WeaponType[weapon_type], int(health_points), int(attack_rating), int(defense_rating))
+            list_pokemons.append(pokemon)
+    return list_pokemons
 
 
 def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
@@ -84,7 +99,12 @@ def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
     -------
        >>> get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
     """
-
+    print(f"Coach {coach_to_ask} choose a Pokemon:")
+    for idx, pokemon in enumerate(list_of_pokemons):
+        if pokemon.is_alive():
+            print(f"{idx}: {pokemon}")
+    chosen_pokemon = int(input("Enter the number of the chosen Pokemon: "))
+    return list_of_pokemons[chosen_pokemon]
 
 
 def coach_is_undefeated(list_of_pokemons):
@@ -110,7 +130,10 @@ def coach_is_undefeated(list_of_pokemons):
     -------
        >>> coach_is_undefeated(list_of_pokemons)
     """
-
+    for pokemon in list_of_pokemons:
+        if pokemon.is_alive():
+            return True
+    return False
 
 def main():
     """Function main of the module.
