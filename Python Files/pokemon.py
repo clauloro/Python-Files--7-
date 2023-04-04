@@ -97,9 +97,6 @@ class Pokemon():
         self._attack_rating = attack_rating
         self._defense_rating = defense_rating
 
-    def __del__(self):
-        if self._id in Pokemon._pokemon_ids:
-            Pokemon._pokemon_ids.remove(self._id)
 
     def __str__(self):
         return f"Pokemon ID {self._id} with name {self._pokemon_name} has as weapon {self._weapon_type.name} and health {self._health_points}"
