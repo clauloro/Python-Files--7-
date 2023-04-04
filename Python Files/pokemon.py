@@ -84,7 +84,7 @@ class Pokemon():
             raise ValueError("Invalid weapon type")
         if not (1 <= health_points <= 100):
             raise ValueError("Invalid health points")
-        if not (1 <= attack_rating <= 10):
+        if not (1 <= attack_rating <= 100):
             raise ValueError("Invalid attack rating")
         if not (1 <= defense_rating <= 10):
             raise ValueError("Invalid defense rating")

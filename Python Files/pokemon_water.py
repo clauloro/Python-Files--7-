@@ -33,9 +33,11 @@ this Python class.
 
 # Source packages.
 from weapon_type import WeaponType
+from pokemon import Pokemon
+import random
 
 
-class PokemonWater():
+class PokemonWater(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +70,28 @@ class PokemonWater():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonWater(1, "Squirtle", WeaponType.PUNCH, 100, 7, 10)
     """
+    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        if not (11 <= attack_rating <= 20):
+            raise ValueError("Invalid attack rating")
+        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
+
+    def __str__(self):
+        return f"Pokemon ID {self._id} with name {self._pokemon_name} has {self._weapon_type.name} weapon and {self._health_points} health points"
+
+    def is_alive(self):
+        return self._health_points > 0
+
+    def fight_defense(self, attack_rating):
+        if attack_rating > self._defense_rating:
+            self._health_points -= (attack_rating - self._defense_rating)
+
+    def fight_attack(self, other_pokemon):
+        damage = self._attack_rating - other_pokemon._defense_rating
+        if damage > 0:
+            other_pokemon._health_points -= damage
+            if other_pokemon._health_points < 0:
+                other_pokemon._health_points = 0
+        return damage > 0
 
 
 def main():
