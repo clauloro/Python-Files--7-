@@ -72,47 +72,22 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
-        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
-        self.indice_defensa = indice_defensa 
-        
-       
+    
+    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
+
+
     def __str__(self):
-        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
-    
-    def get_pokemon_name(self):
-        return self.get_nombre()
+        return f'Pokemon ID {self.get_id()} with name {self.get_pokemon_name()} has as weapon {self.__weapon_type.name} and health {self.get_health_points()}'
 
-    def get_weapon_type(self):  
-        return self.get_arma()
+    def get_weapon_type(self):
+        return self.__weapon_type
 
-    def get_health_points(self):  
-        return self.get_puntos_salud()
-    
-    def get_attack_rating(self):
-        return self.get_indice_ataque()
-    
-    def get_defense_rating(self):
-        return self.get_indice_defensa()
+    def fight_attack(self, enemy_pokemon):
+        damage = self.get_attack_rating() + self.get_weapon_type().value
+        enemy_pokemon_was_hit = enemy_pokemon.fight_defense(damage)
+        return enemy_pokemon_was_hit
 
-    def is_alive(self):
-        if self.get_puntos_salud() > 0:
-            return True
-        else:
-            return False
-
-    def fight_defense(self, points_of_damage):
-        if random.randint(0,1) == 0:
-            return False
-        else:
-            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
-            return True
-
-    def fight_attack(self, pokemon_to_attack):
-        if pokemon_to_attack.fight_defense(self.get_indice_ataque()):
-            return True
-        else:
-            return False
 
 
 

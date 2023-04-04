@@ -38,11 +38,6 @@ from weapon_type import WeaponType
 
 
 
-class WeaponType(Enum):
-    PUNCH = 1
-    KICK = 2
-    ELBOW = 3
-    HEADBUTT = 4
 
 
 class Pokemon():
