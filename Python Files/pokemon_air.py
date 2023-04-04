@@ -72,14 +72,46 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
-    def fight_defense(self, attack_points):
-        if random.random() < 0.5:
+    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
+        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
+        self.indice_defensa = indice_defensa 
+        
+       
+    def __str__(self):
+        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
+    
+    def get_pokemon_name(self):
+        return self.get_nombre()
+
+    def get_weapon_type(self):  
+        return self.get_arma()
+
+    def get_health_points(self):  
+        return self.get_puntos_salud()
+    
+    def get_attack_rating(self):
+        return self.get_indice_ataque()
+    
+    def get_defense_rating(self):
+        return self.get_indice_defensa()
+
+    def is_alive(self):
+        if self.get_puntos_salud() > 0:
+            return True
+        else:
+            return False
+
+    def fight_defense(self, points_of_damage):
+        if random.randint(0,1) == 0:
             return False
         else:
-            damage = attack_points - self.get_defense_rating()
-            if damage > 0:
-                self.set_health_points(self.get_health_points() - damage)
-                return True
+            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
+            return True
+
+    def fight_attack(self, pokemon_to_attack):
+        if pokemon_to_attack.fight_defense(self.get_indice_ataque()):
+            return True
+        else:
             return False
 
 
