@@ -75,7 +75,7 @@ class Pokemon():
     """
     _pokemon_ids = set()
 
-    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating, defense_range=None):
         if not isinstance(id,int) or id in Pokemon._pokemon_ids:
             raise ValueError("Invalid ID")
         if not isinstance(pokemon_name, str):
@@ -88,7 +88,10 @@ class Pokemon():
             raise ValueError("Invalid attack rating")
         if not (1 <= defense_rating <= 10):
             raise ValueError("Invalid defense rating")
-
+        if defense_range is not None:
+            min_defense, max_defense = defense_range
+            if not (min_defense <= defense_rating <= max_defense):
+                raise ValueError("Invalid defense rating")
         self._id = id
         Pokemon._pokemon_ids.add(id)
         self._pokemon_name = pokemon_name
