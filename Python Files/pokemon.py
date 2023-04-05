@@ -99,6 +99,10 @@ class Pokemon():
         self._health_points = health_points
         self._attack_rating = attack_rating
         self._defense_rating = defense_rating
+        self.defense_range = defense_range
+        self.check_defense_rating(defense_rating)
+        if self.defense_range is not None:
+            self.check_defense_rating(defense_rating)
 
 
     def __str__(self):
@@ -137,6 +141,11 @@ class Pokemon():
             self._health_points -= damage
             return damage > 0
         return False
+    def check_defense_rating(self, defense_rating):
+        if self.defense_range is not None:
+            min_defense, max_defense = self.defense_range
+            if not (min_defense <= defense_rating <= max_defense):
+                raise ValueError("Invalid defense rating")
 
 
 
