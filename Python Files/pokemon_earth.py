@@ -73,18 +73,14 @@ class PokemonEarth(Pokemon):
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
     def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
-        self.check_defense_rating(defense_rating)
+        if not 11 <= defense_rating <= 20:
+            raise ValueError('The defense rating must be between 11 and 20')
+        
         super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
-    def check_defense_rating(self, defense_rating):
-        min_defense, max_defense = 11, 20
-        if not (min_defense <= defense_rating <= max_defense):
-            raise ValueError("Invalid defense rating")
 
-    def set_defense_rating(self, defense_rating):
-        self.check_defense_rating(defense_rating)
-        self._defense_rating = defense_rating
 
+    
 def main():
     """Function main of the module.
 
