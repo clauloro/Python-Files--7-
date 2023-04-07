@@ -75,9 +75,6 @@ class PokemonEarth(Pokemon):
     def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
         super().__init__(pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
-    def fight_attack(self, pokemon_to_attack):
-        return pokemon_to_attack.fight_defense(self.get_attack_rating())
-
 
     
 def main():
@@ -106,7 +103,7 @@ def main():
     print("=================================================================.")
     print("Test Case 1: Create a Pokemon.")
     print("=================================================================.")
-    pokemon_1 = PokemonEarth(1, "Diglett", WeaponType.HEADBUTT, 100, 8, 12)
+    pokemon_1 = PokemonEarth(1, "Diglett", WeaponType.HEADBUTT, 100, 8, 15)
 
     if pokemon_1.get_pokemon_name() == "Diglett":
         print("Test PASS. The parameter pokemon_name has been correctly set.")
