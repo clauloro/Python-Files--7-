@@ -72,40 +72,11 @@ class PokemonEarth(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
-        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
-        self.defense_rating = defense_rating
-        if not 11 <= defense_rating <= 20:
-            raise ValueError('the defense rating must be between 11 and 20')
-    def __str__(self):
-        return 'Pokemon ID' + str(self.get_id()) + ' with name ' + self.get_pokemon_name() + self.get_weapon_type().name + ' and health ' + str(self.get_health_points())
-    def get_pokemon_name(self):
-        return self.get_pokemon_name()
-    def get_weapon_type(self):
-        return self.get_weapon_type()
-    def get_health_points(self):
-        return self.get_health_points()
-    def get_attack_rating(self):
-        return self.get_attack_rating()
-    def get_defense_rating(self):
-        return self.get_defense_rating()
-    def is_alive(self):
-        if self.get_defense_rating() > 0:
-            return True
-        else:
-            return False
-    def fight_defense(self, points_of_damage):
-        if self.get_defense_rating() > points_of_damage:
-            return False
-        else:
-            self.set_health_points(self.get_health_points()-(points_of_damage- self.get_defense_rating()))
-            return True
-    def fight_attack(self, pokemon_to_attack):
-        if pokemon_to_attack.fight_defense(self.get_attack_rating()):
-            return True
-        else:
-            return False
+    def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        super().__init__(pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
 
+    def fight_attack(self, pokemon_to_attack):
+        return pokemon_to_attack.fight_defense(self.get_attack_rating())
 
 
     
