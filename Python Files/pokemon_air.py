@@ -72,29 +72,8 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
-    
     def __init__(self, id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
-        super().__init__(id, pokemon_name, health_points, attack_rating, defense_rating)
-        self._weapon_type = weapon_type
-
-    
-    def get_weapon_type(self):
-        return self._weapon_type
-    
-    def set_weapon_type(self, weapon_type):
-        self._weapon_type = weapon_type
-    
-    def __str__(self):
-        return "Pokemon ID {} with name {} has as weapon {} and health {}".format(self._id, self._name, self._weapon_type.name, self._health_points)
-    
-    def fight_defense(self, attack_rating):
-        hit = super().fight_defense(attack_rating)
-        if hit and self._weapon_type == WeaponType.HEADBUTT:
-            if random.randint(1, 10) > 7:
-                return self.fight_attack(self)
-        return hit
-
-
+        super().__init__(id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
     
 
 
