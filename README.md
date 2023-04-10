@@ -3,4 +3,5 @@
 Examen Pokemon
 
 Usuario: clauloro
-link repositorio:
+
+link repositorio: https://github.com/clauloro/Python-Files--7-.git
